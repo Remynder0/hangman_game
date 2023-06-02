@@ -18,8 +18,22 @@
     width: 100%;
   }
 
+button
+{
+    display: inline-block;
+    background-color: forestgreen;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    cursor: pointer;
+    margin: 5px;
+}
 
-/*Connexion CSS*/
+/*Solo and Multi form*/
 
 .block{
     border-radius: 5px;
