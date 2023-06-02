@@ -7,39 +7,53 @@
         <script src="script.js"></script>
     </head>
     <body>
-        <h1>Hangman game</h1>
+        <header class="banniere">
+            <h1>Hangman game</h1>
+        </header>
         <main>
+
             <p>This is the hangman game choose solo or with friends to play</p>
 
             <button id="solo"> Solo </button>
             <button id="multi"> Friends </button>
 
 
-            <form id="form-multi" style="display: none;">
-                <div>
-                    <label>Word :
-                        <input type="text" id="word" name="word" placeholder="ex: Strawberries"/>
-                        <span class="error" id="error-word"></span>
-                    </label>
+            <div class="block">
+                <form id="form-multi" style="display: none;">
+                <div class="row">
+                <div class="col-25">
+                    <label for="nom">Word :</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="word" name="word" placeholder="ex: Strawberries"/>
+                    <span id="error-word" class="error" aria-live="polite"></span>
+                </div>
+                </div>
+            
+                <div class="row">
+                    <input type="button" id="submit-word" class="submit" name="valider" value="OK" />
                 </div>
 
-                <div>
-                    <input type="button" id="submit-word" name="valider" value="Envoyer" />
-                </div>
-            </form>
+                </form>
+            </div>
 
+            <div class="block">
+                <form id="form-solo" style="display: none;" >
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="name">Number :</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="number" id="number" name="number" value="1" min="1" max="29"/>
+                        </div>
+                        </div>
+                    
+                    <div class="row">
+                        <input type="button" id="submit-number" class="submit" name="valider" value="OK" />
+                    </div>
 
-            <form id="form-solo" style="display: none;" >
-                <div>
-                    <label>Word :
-                        <input type="number" id="number" name="number" value="1" min="1" max="29"/>
-                    </label>
-                </div>
-
-                <div>
-                    <input type="button" id="submit-number" name="valider" value="Envoyer" />
-                </div>
-            </form>
+                </form>
+            </div>
 
         </main>
 

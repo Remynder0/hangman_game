@@ -1,8 +1,87 @@
 *{
+    box-sizing: border-box;
     width: auto;
     text-align: center;
 }
 
 .error{
     color: red;
+}
+
+.banniere {
+    margin: auto;
+    padding-top: 30px;
+    background-image: url(img/paysage_nordique.jpg);
+    background-position: top;
+    background-size: cover;
+    height: 310px;
+    width: 100%;
+  }
+
+
+/*Connexion CSS*/
+
+.block{
+    border-radius: 5px;
+    border-color: black;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+input[type=text]{
+    width: 100%;
+    padding: 12px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    resize: vertical;
+}
+input[type=text]:focus{
+    border: 3px solid #555;
+}
+input[type=text]:valid{
+    box-shadow: 0 0 4px 1px greenyellow;
+}
+input[type=text]:invalid{
+    box-shadow: 0 0 3px 1px red;
+}
+
+label{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+.submit{
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    float: right;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.submit:hover{
+    background-color: #45a049;
+}
+
+.col-25{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+.col-75{
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75 ,input[type=submit]{
+        width: 100%;
+        margin-top: 0;
+    }
 }

@@ -21,8 +21,10 @@ function multi() {
 function solo() {
     let form = document.getElementById("form-solo");
     form.setAttribute('style', 'display : block');
-    let button = document.querySelectorAll('main button');
-    button.setAttribute('style', 'display : none');
+    let buttons = document.querySelectorAll('main button');
+    buttons.forEach(function(button) {
+        button.setAttribute('style', 'display : none');
+      });
 
     document.getElementById("submit-number").addEventListener('click', formSolo);
     console.log('ok');
