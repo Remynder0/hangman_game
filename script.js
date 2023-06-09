@@ -43,7 +43,6 @@ function formMulti(event) {
 
         const input=document.getElementsByTagName("input")
         let word = input.namedItem("word");
-        console.log(word.value);
         
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/'.concat('',word.value), true);
@@ -81,38 +80,68 @@ function formSolo(event) {
     const input=document.getElementsByTagName("input")
     let number = input.namedItem("number");
     console.log(number.value);
+    console.log(parseInt(number.value)+1);
     fetch('https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt')
     .then(response => response.text())
     .then(data => {
         const words = data.split('\n');
-        const wordsNumber = words.filter(word => word.length === parseInt(number.value));
-        const wordRandom = wordsNumber[Math.floor(Math.random() * wordsNumber.length)];
+        const wordsNumber = words.filter(word => word.length === parseInt(number.value)+1);
+        let wordsList = [];
+
+        for (let i = 0; i < 10; i++) {
+            let wordRandom = wordsNumber[Math.floor(Math.random() * wordsNumber.length)];
+            wordsList.push(wordRandom);
+          }
         
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en/'.concat('',wordRandom), true);
-        xhr.onreadystatechange = function () {
-            console.log('ok')
-            if (xhr.status !== 200) {
-                const wordRandom = wordsNumber[Math.floor(Math.random() * wordsNumber.length)];
-                console.log(wordRandom);
-                event.preventDefault();
-            }
-        }
-        console.log('kong')
-        makeHangman(wordRandom);    
-        xhr.send();  
+        findWordsWithLength(wordsList);
+        block.setAttribute('style', 'display : none');
+
     })
-    .catch(error => {
+    /*.catch(error => {
         console.log(error);
-    });  
+    });*/
+    
 
 }
 
 function makeHangman(data) {
     let hangmanBlock = document.createElement('div');
     let hangman = document.createElement('h1');
-    hangman.textContent = data.word;
+
+    const sliceWord = data.word.split('');
+    let word = [sliceWord];
+    for (let i = 1; i < sliceWord.length; i++) {
+        sliceWord.splice(i, 1, ' _')
+    }
+
+    hangman.textContent = sliceWord.join('');
     hangmanBlock.appendChild(hangman);
     hangmanBlock.setAttribute('style', 'display : block');
     document.querySelector("main").appendChild(hangmanBlock);
 }
+
+
+  function findWordsWithLength(words, index = 0) {
+
+    
+    const word = words[index];
+    const xhr = new XMLHttpRequest();
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+  
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+            makeHangman(response[0]);
+          // Appeler la fonction récursivement pour la prochaine longueur
+        } else {
+            findWordsWithLength(words, index +1);
+            console.error('Unknow word :', word);
+        }
+      }
+    };
+    xhr.open('GET', url, true);
+    xhr.send();
+  }
+  
