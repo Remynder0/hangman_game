@@ -106,21 +106,29 @@ function formSolo(event) {
 
 function makeHangman(data) {
     let hangmanBlock = document.createElement('div');
-    let hangman = document.createElement('h1');
+    
 
+    // stockage du mot dans le stockage navigateur
+    sessionStorage.setItem('word',data.word)
+
+    // creation du mot
+    let hangman = document.createElement('h1'); 
     const sliceWord = data.word.split('');
-    let word = [sliceWord];
+    sliceWord.splice(0, 1, sliceWord[0].toUpperCase())
     for (let i = 1; i < sliceWord.length; i++) {
         sliceWord.splice(i, 1, ' _')
     }
-
     hangman.textContent = sliceWord.join('');
     hangmanBlock.appendChild(hangman);
+    
+    // bouton de l'alphabet 
     hangmanBlock.setAttribute('style', 'display : block');
     const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     for (let i = 0; i < alpha.length; i++) {
         let button = document.createElement('button');
         button.textContent = alpha[i];
+        button.setAttribute('name', alpha[i].toLowerCase());
+        button.addEventListener('click',letter);
         hangmanBlock.appendChild(button);
 
     }
@@ -154,3 +162,17 @@ function makeHangman(data) {
     xhr.send();
   }
   
+
+
+  function letter(event){
+    console.log(event.currentTarget.getAttribute('name'));
+    let actualLetter = event.currentTarget.getAttribute('name');
+    if(sessionStorage.getItem('word').includes(actualLetter)){
+        console.log('ok');
+    }
+    else {
+        console.log('ko');
+    }
+        
+    
+  }
