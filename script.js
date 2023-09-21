@@ -123,7 +123,6 @@ function makeHangman(data) {
 
     for (let i = 1; i < data.word.length; i++) {
         let blank=document.createElement('span');
-        blank.textContent = ' _'
         blank.setAttribute('id', i);
         sectionWord.appendChild(blank);
     
@@ -178,11 +177,11 @@ function makeHangman(data) {
   
 
 
-  function letter(event){
+function letter(event){
     console.log(event.currentTarget.getAttribute('name'));
     let actualLetter = event.currentTarget.getAttribute('name');
     let word = sessionStorage.getItem('word');
-    
+
     if(word.includes(actualLetter)){
         console.log('ok1');
         for (let i = 0; i < word.length; i++) {
@@ -191,11 +190,12 @@ function makeHangman(data) {
                 let letter = document.getElementById(i)
                 if (letter.id !== '0') {
                     console.log('ok2');
-                    if (letter.textContent !== ' _'){
+                    if (letter.textContent !== ''){
                         console.log('ko2');       
                     }
                     else{
                         console.log('ok3');
+                        letter.textContent = actualLetter.toUpperCase();
                     }
                 }
             }
@@ -206,4 +206,4 @@ function makeHangman(data) {
         console.log('ko1');
     }
 
-  }
+}

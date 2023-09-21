@@ -10,12 +10,11 @@
 
 .banniere {
     margin: auto;
-    padding-top: 30px;
+    padding-top: 6em;    
+    padding-bottom: 6em;
     background-image: url();
     background-position: top;
     background-size: cover;
-    height: 310px;
-    width: 100%;
   }
 
 button
@@ -102,6 +101,19 @@ label{
 
 /* the Word */
 
+#word_section{
+    margin: auto;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
 #word_section span {
+
+    /* Font */
+    font-size: 1.5em;
+    font-weight: bold;
+
     border-bottom: firebrick solid 0.3em;
+    padding: 0.5em;
+    margin-left: 0.7em;
+    margin-right: 0.7em;
 }
