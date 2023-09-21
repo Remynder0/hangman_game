@@ -99,3 +99,9 @@ label{
         margin-top: 0;
     }
 }
+
+/* the Word */
+
+#word_section span {
+    border-bottom: firebrick solid 0.3em;
+}
