@@ -111,17 +111,30 @@ function makeHangman(data) {
     // stockage du mot dans le stockage navigateur
     sessionStorage.setItem('word',data.word)
 
-    // creation du mot
-    let hangman = document.createElement('h1'); 
-    const sliceWord = data.word.split('');
-    sliceWord.splice(0, 1, sliceWord[0].toUpperCase())
-    for (let i = 1; i < sliceWord.length; i++) {
-        sliceWord.splice(i, 1, ' _')
-    }
-    hangman.textContent = sliceWord.join('');
-    hangmanBlock.appendChild(hangman);
+    // creation du mot  avec les blancs
+    let sectionWord = document.createElement('section');
+    sectionWord.setAttribute('id', 'word_section')
+
+    let firstLetter = document.createElement('span');
+    firstLetter.textContent = data.word[0].toUpperCase();
+    firstLetter.setAttribute('id', '0');
+    sectionWord.appendChild(firstLetter);
+
+
+    for (let i = 1; i < data.word.length; i++) {
+        let blank=document.createElement('span');
+        blank.textContent = ' _'
+        blank.setAttribute('id', i);
+        sectionWord.appendChild(blank);
     
-    // bouton de l'alphabet 
+    }
+
+    hangmanBlock.appendChild(sectionWord);
+
+
+    // bouton de l'alphabet
+    let sectionButton = document.createElement('section');
+    sectionButton.setAttribute('id', 'button_section');
     hangmanBlock.setAttribute('style', 'display : block');
     const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     for (let i = 0; i < alpha.length; i++) {
@@ -129,7 +142,8 @@ function makeHangman(data) {
         button.textContent = alpha[i];
         button.setAttribute('name', alpha[i].toLowerCase());
         button.addEventListener('click',letter);
-        hangmanBlock.appendChild(button);
+        sectionButton.appendChild(button);
+        hangmanBlock.appendChild(sectionButton);
 
     }
 
@@ -167,12 +181,29 @@ function makeHangman(data) {
   function letter(event){
     console.log(event.currentTarget.getAttribute('name'));
     let actualLetter = event.currentTarget.getAttribute('name');
-    if(sessionStorage.getItem('word').includes(actualLetter)){
-        console.log('ok');
-    }
-    else {
-        console.log('ko');
-    }
-        
+    let word = sessionStorage.getItem('word');
     
+    if(word.includes(actualLetter)){
+        console.log('ok1');
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === actualLetter){
+                console.log(word[i]);
+                let letter = document.getElementById(i)
+                if (letter.id !== '0') {
+                    console.log('ok2');
+                    if (letter.textContent !== ' _'){
+                        console.log('ko2');       
+                    }
+                    else{
+                        console.log('ok3');
+                    }
+                }
+            }
+        }
+    }
+
+    else {
+        console.log('ko1');
+    }
+
   }
