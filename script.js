@@ -130,22 +130,9 @@ function makeHangman(data) {
 
     hangmanBlock.appendChild(sectionWord);
 
+    hangman(hangmanBlock);
 
-    // bouton de l'alphabet
-    let sectionButton = document.createElement('section');
-    sectionButton.setAttribute('id', 'button_section');
-    hangmanBlock.setAttribute('style', 'display : block');
-    const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-    for (let i = 0; i < alpha.length; i++) {
-        let button = document.createElement('button');
-        button.textContent = alpha[i];
-        button.setAttribute('name', alpha[i].toLowerCase());
-        button.addEventListener('click',letter);
-        sectionButton.appendChild(button);
-        hangmanBlock.appendChild(sectionButton);
-
-    }
-
+    alphabet(hangmanBlock);
 
     document.querySelector("main").appendChild(hangmanBlock);
 }
@@ -174,8 +161,54 @@ function makeHangman(data) {
     xhr.open('GET', url, true);
     xhr.send();
   }
-  
 
+  function hangman(hangmanBlock) {
+    let canvas = document.createElement('canvas');
+    canvas.setAttribute('id', 'hangman');
+    const width = (canvas.width = window.innerWidth/1.2);
+    const height = (canvas.height = 450);
+
+    const ctx = canvas.getContext("2d");
+
+    function degToRad(degrees) {
+        return (degrees * Math.PI) / 180;
+      }
+      
+    //fond
+    ctx.fillStyle = " 	rgb(245,245,220)";
+    ctx.fillRect(0, 0, width, height);
+
+    //sol
+    ctx.fillStyle = "rgb(107,142,35)";
+    ctx.fillRect(0, height-60, width, height);
+
+    //personnage
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.beginPath();
+    ctx.arc(620, 200, 20, degToRad(0), degToRad(360), true);
+    ctx.fill();
+    ctx.arc(620, 200, 20.5, degToRad(0), degToRad(360), true)
+    ctx.stroke();
+
+    hangmanBlock.appendChild(canvas)
+  }
+
+  function alphabet(hangmanBlock) {
+    // bouton de l'alphabet
+    let sectionButton = document.createElement('section');
+    sectionButton.setAttribute('id', 'button_section');
+    hangmanBlock.setAttribute('style', 'display : block');
+    const alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    for (let i = 0; i < alpha.length; i++) {
+        let button = document.createElement('button');
+        button.textContent = alpha[i];
+        button.setAttribute('name', alpha[i].toLowerCase());
+        button.addEventListener('click',letter);
+        sectionButton.appendChild(button);
+        hangmanBlock.appendChild(sectionButton);
+
+    }
+  }
 
 function letter(event){
     console.log(event.currentTarget.getAttribute('name'));

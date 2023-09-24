@@ -117,3 +117,7 @@ label{
     margin-left: 0.7em;
     margin-right: 0.7em;
 }
+
+#hangman {
+    padding: 3em;
+}
