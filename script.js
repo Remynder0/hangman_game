@@ -182,13 +182,65 @@ function makeHangman(data) {
     ctx.fillStyle = "rgb(107,142,35)";
     ctx.fillRect(0, height-60, width, height);
 
-    //personnage
-    ctx.fillStyle = "rgb(255, 255, 255)";
+    //personnage//
+
+    //tete
+    function head(ctx){
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.beginPath();
+        ctx.arc(620, 200, 20, degToRad(0), degToRad(360), true);
+        ctx.fill();
+        ctx.stroke();
+    } 
+
+    //corps
+    function body(ctx) {
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.beginPath();
+        ctx.lineTo(668, 220);
+        const triHeight = 80 * Math.tan(degToRad(60));
+        ctx.lineTo(618, 220 + triHeight);
+        ctx.lineTo(568, 220);
+        ctx.lineTo(668, 220);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    //jambes
+    function legs(ctx) {
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.beginPath();
+        ctx.lineTo(595, 300);
+        ctx.lineTo(605, 300);
+        ctx.lineTo(605, 400);
+        ctx.lineTo(595, 400);
+        ctx.lineTo(595, 300);
+
+        ctx.lineTo(630, 300);
+        ctx.lineTo(640, 300);
+        ctx.lineTo(640, 400);
+        ctx.lineTo(630, 400);
+        ctx.lineTo(630, 300);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+
+    head(ctx);
+    body(ctx);
+    legs(ctx);
+
+    ctx.rotate(0.25);
     ctx.beginPath();
-    ctx.arc(620, 200, 20, degToRad(0), degToRad(360), true);
+    ctx.rect(700, 50, 90, 10);
+    ctx.fillStyle = "#FE8E9D";
     ctx.fill();
-    ctx.arc(620, 200, 20.5, degToRad(0), degToRad(360), true)
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "black";
     ctx.stroke();
+
+
+
 
     hangmanBlock.appendChild(canvas)
   }
