@@ -165,7 +165,7 @@ function makeHangman(data) {
   function hangman(hangmanBlock) {
     let canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'hangman');
-    const width = (canvas.width = window.innerWidth/1.2);
+    const width = (canvas.width = 800);
     const height = (canvas.height = 450);
 
     const ctx = canvas.getContext("2d");
@@ -188,7 +188,7 @@ function makeHangman(data) {
     function head(ctx){
         ctx.fillStyle = "rgb(255, 255, 255)";
         ctx.beginPath();
-        ctx.arc(620, 200, 20, degToRad(0), degToRad(360), true);
+        ctx.arc(620, 200, 25, degToRad(0), degToRad(360), true);
         ctx.fill();
         ctx.stroke();
     } 
@@ -225,20 +225,28 @@ function makeHangman(data) {
         ctx.stroke();
     }
 
+    //bras
+    function arms(ctx) {
+            ctx.rotate(85 * Math.PI / 180);
+            ctx.beginPath();
+            ctx.fillRect(280,-645,80,15);
+            ctx.strokeRect(280,-645,80,15);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+            ctx.rotate(95 * Math.PI / 180);
+            ctx.beginPath();
+            ctx.fillRect(172,-603,80,15);
+            ctx.strokeRect(172,-603,80,15);
+    }
 
     head(ctx);
     body(ctx);
     legs(ctx);
+    arms(ctx);
 
-    ctx.rotate(0.25);
-    ctx.beginPath();
-    ctx.rect(700, 50, 90, 10);
-    ctx.fillStyle = "#FE8E9D";
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "black";
-    ctx.stroke();
-
+    
+    
+    
 
 
 
