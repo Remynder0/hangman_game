@@ -191,6 +191,16 @@ function makeHangman(data) {
         ctx.arc(620, 200, 25, degToRad(0), degToRad(360), true);
         ctx.fill();
         ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(610, 190);
+        ctx.lineTo(615, 195);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(615, 190);
+        ctx.lineTo(610, 195);
+        ctx.stroke();
     } 
 
     //corps
