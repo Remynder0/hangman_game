@@ -191,17 +191,33 @@ function makeHangman(data) {
         ctx.arc(620, 200, 25, degToRad(0), degToRad(360), true);
         ctx.fill();
         ctx.stroke();
-
+        
+        //oeuil gauche
         ctx.beginPath();
         ctx.moveTo(610, 190);
         ctx.lineTo(615, 195);
         ctx.stroke();
-
         ctx.beginPath();
         ctx.moveTo(615, 190);
         ctx.lineTo(610, 195);
         ctx.stroke();
-    } 
+
+        //oeuil droit
+        ctx.beginPath();
+        ctx.moveTo(630, 190);
+        ctx.lineTo(625, 195);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(625, 190);
+        ctx.lineTo(630, 195);
+        ctx.stroke();
+
+        //bouche
+        ctx.beginPath();
+        ctx.moveTo(615, 205);
+        ctx.lineTo(625, 205);
+        ctx.stroke();
+    }
 
     //corps
     function body(ctx) {
@@ -247,6 +263,8 @@ function makeHangman(data) {
             ctx.beginPath();
             ctx.fillRect(172,-603,80,15);
             ctx.strokeRect(172,-603,80,15);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
     }
 
     head(ctx);
@@ -254,7 +272,11 @@ function makeHangman(data) {
     legs(ctx);
     arms(ctx);
 
-    
+    ctx.fillStyle = "rgb(113, 66, 25)";
+    ctx.strokeStyle = "rgb(53, 34, 16)";
+    ctx.beginPath();
+    ctx.fillRect(616,90,8,90);
+    ctx.strokeRect(616,90,8,90);
     
     
 
