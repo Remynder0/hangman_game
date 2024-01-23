@@ -253,6 +253,7 @@ function makeHangman(data) {
 
     //bras
     function arms(ctx) {
+            ctx.fillStyle = "rgb(255, 255, 255)";
             ctx.rotate(85 * Math.PI / 180);
             ctx.beginPath();
             ctx.fillRect(280,-645,80,15);
@@ -271,16 +272,49 @@ function makeHangman(data) {
     body(ctx);
     legs(ctx);
     arms(ctx);
-
-    ctx.fillStyle = "rgb(113, 66, 25)";
+    
+    //corde
+    ctx.fillStyle = "rgb(204,189,173)";
     ctx.strokeStyle = "rgb(53, 34, 16)";
     ctx.beginPath();
     ctx.fillRect(616,90,8,90);
     ctx.strokeRect(616,90,8,90);
-    
-    
 
+    //poutre haut
+    ctx.fillStyle = "rgb(91, 60, 17)";
+    ctx.strokeStyle = "rgb(53, 34, 16)";
+    ctx.beginPath();
+    ctx.fillRect(410,80,250,25);
+    ctx.strokeRect(410,80,250,25);
 
+    //poutre vertical
+    ctx.fillStyle = "rgb(91, 60, 17)";
+    ctx.strokeStyle = "rgb(53, 34, 16)";
+    ctx.beginPath();
+    ctx.fillRect(420,80,25,350);
+    ctx.strokeRect(420,80,25,350);
+    
+    //plancher
+    ctx.fillStyle = "rgb(91, 60, 17)";
+    ctx.strokeStyle = "rgb(53, 34, 16)";
+    ctx.beginPath();
+    ctx.fillRect(570,410,90,30);
+    ctx.strokeRect(570,410,90,30);
+
+    //vis
+    ctx.fillStyle = "rgb(206, 206, 206)";
+    ctx.beginPath();
+    ctx.arc(432, 92, 6, degToRad(0), degToRad(360), true);
+    ctx.fill();
+    ctx.stroke();
+
+    //soutien
+    ctx.fillStyle = "rgb(91, 60, 17)";
+    ctx.rotate(115 * Math.PI / 180);
+    ctx.beginPath();
+    ctx.fillRect(20,-500,-150,15);
+    ctx.strokeRect(20,-645,100,10);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     hangmanBlock.appendChild(canvas)
   }
