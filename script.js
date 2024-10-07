@@ -313,7 +313,7 @@ function makeHangman(data) {
     ctx.rotate(115 * Math.PI / 180);
     ctx.beginPath();
     ctx.fillRect(20,-500,-150,15);
-    ctx.strokeRect(20,-645,100,10);
+    //ctx.strokeRect(20,-645,100,10);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     hangmanBlock.appendChild(canvas)
@@ -360,9 +360,11 @@ function letter(event){
             }
         }
     }
-
     else {
         console.log('ko1');
     }
+
+    event.currentTarget.setAttribute('style','background-color:gray')
+    event.currentTarget.removeEventListener('click',letter);
 
 }
